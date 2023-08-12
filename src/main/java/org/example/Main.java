@@ -1,7 +1,131 @@
 package org.example;
 
+import java.util.List;
+import java.util.Scanner;
+
+import static org.example.PhoneBook.*;
+
 public class Main {
+    private static final Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        menu();
+    }
+
+    static void menu() {
+        System.out.print("[menu] Enter action (add, list, search, count, exit):");
+        String input = scanner.next();
+        switch (input) {
+            case "add": {
+                addContact();
+                System.out.println();
+                menu();
+            }
+            case "list": {
+                listMenu();
+                System.out.println();
+            }
+            case "search": {
+                searchMenu();
+                searchContacts();
+                System.out.println();
+            }
+            case "count": {
+                count();
+                System.out.println();
+                menu();
+            }
+            case "exit": {
+                System.exit(0);
+            }
+        }
+    }
+
+    static void listMenu() {
+        list();
+        System.out.println();
+        System.out.print("[list] Enter action ([number], back):");
+        String input = scanner.next();
+        if (input.equals("back")) {
+            menu();
+            return;
+        }
+        try {
+            int index = Integer.parseInt(input);
+            getInfo(index - 1);
+            System.out.println();
+            recordMenu(index);
+        } catch (Exception e) {
+            menu();
+        }
+    }
+
+    static void searchMenu() {
+        searchContacts();
+        System.out.println("[search] Enter action ([number], back, again):");
+        String input = scanner.next();
+        switch (input) {
+            case "back": {
+                System.out.println();
+                menu();
+            }
+            case "again": {
+                System.out.println();
+                searchMenu();
+            }
+        }
+        try {
+            int index = Integer.parseInt(input);
+            getInfo(index - 1);
+            recordMenu(index);
+        } catch (Exception e) {
+            searchMenu();
+        }
+    }
+
+    static void recordMenu(int index) {
+        System.out.print("[record] Enter action (edit, delete, menu):");
+        String input = scanner.next();
+        switch (input) {
+            case "edit": {
+                editContact(index);
+                System.out.println();
+                recordMenu(index);
+            }
+            case "delete": {
+                removeContact(index);
+                System.out.println();
+                recordMenu(index);
+            }
+            case "menu": {
+                menu();
+            }
+        }
+    }
+    static void addContact() {
+        System.out.println("Enter the type (person, organization):");
+        String isPerson = scanner.next();
+        if (isPerson.equals("person")) {
+            PhoneBook.addContact(addPerson(scanner));
+        } else PhoneBook.addContact(addOrganization(scanner));
+    }
+    static void editContact(int index) {
+        if (index > PhoneBook.count()) return;
+        edit(scanner, index - 1);
+    }
+
+    static void searchContacts() {
+        System.out.println("Enter search query:");
+        List<Contact> searchedQuery = searchQuery(scanner.next());
+        System.out.println("Found " + searchedQuery.size() + " results:");
+        listQuery(searchedQuery);
+    }
+
+    static void removeContact(int index) {
+        PhoneBook.removeContact(index);
+    }
+
+    static void count() {
+        scanner.nextLine();
+        System.out.println("The Phone Book has " + PhoneBook.count() + " records.");
     }
 }
