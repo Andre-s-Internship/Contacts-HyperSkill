@@ -5,16 +5,13 @@ public class PersonContact extends Contact {
     private String surname;
     private String phoneNumber;
     private String gender;
-    private String birthdate;
 
-    public PersonContact(String name, String surname, String phoneNumber, String gender, String birthdate) {
+    public PersonContact(String name, String surname, String phoneNumber, String gender) {
         super(phoneNumber);
         this.name = name;
         this.surname = surname;
         this.gender = gender;
-        this.birthdate = birthdate;
     }
-
 
     public String getName() {
         return name;
@@ -39,16 +36,18 @@ public class PersonContact extends Contact {
     public void setPhoneNumber(String phoneNumber) {
         if (isValidPhoneNumber(phoneNumber)) {
             this.phoneNumber = phoneNumber;
-        } else this.phoneNumber = "[no number]";
+        } else {
+            this.phoneNumber = EMPTYNUMBER;
+        }
     }
+
     @Override
     public String print() {
-        return "Name: "            + getName() + "\n" +
-                "Surname: "        + getSurname() + "\n" +
-                "Birth date: "     + getBirthdate() + "\n" +
-                "Gender: "         + getGender() + "\n" +
-                "Number: "         + getPhoneNumber() + "\n" +
-                "Time created: "   + getCreationDate() + "\n" +
+        return "Name: " + getName() + "\n" +
+                "Surname: " + getSurname() + "\n" +
+                "Gender: " + getGender() + "\n" +
+                "Number: " + getPhoneNumber() + "\n" +
+                "Time created: " + getCreationDate() + "\n" +
                 "Time last edit: " + getLastEditDate();
     }
 
@@ -58,13 +57,5 @@ public class PersonContact extends Contact {
 
     public void setGender(String gender) {
         this.gender = gender;
-    }
-
-    public String getBirthdate() {
-        return birthdate;
-    }
-
-    public void setBirthdate(String birthdate) {
-        this.birthdate = birthdate;
     }
 }

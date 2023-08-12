@@ -1,10 +1,10 @@
 package org.example;
 
-public class Organization extends Contact{
-    private String name;
+public class OrganizationContact extends Contact {
+    private final String name;
     private String address;
 
-    public Organization(String phoneNumber, String name, String address) {
+    public OrganizationContact(String phoneNumber, String name, String address) {
         super(phoneNumber);
         this.name = name;
         this.address = address;
@@ -28,9 +28,9 @@ public class Organization extends Contact{
 
     @Override
     public String print() {
-        return "Organization name: "+ getName() + "\n" +
-                "Address: "+ getAddress() + "\n" +
-                "Number: "+ getPhoneNumber() + "\n" +
+        return "Organization name: " + getName() + "\n" +
+                "Address: " + getAddress() + "\n" +
+                "Number: " + getPhoneNumber() + "\n" +
                 "Time created: " + getCreationDate() + "\n" +
                 "Time last edit: " + getLastEditDate();
     }

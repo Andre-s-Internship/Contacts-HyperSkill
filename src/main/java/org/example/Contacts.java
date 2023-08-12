@@ -5,14 +5,19 @@ import java.util.Scanner;
 
 import static org.example.PhoneBook.*;
 
-public class Main {
+public class Contacts {
+
+    public static final String MENUACTIONS = "[menu] Enter action (add, list, search, count, exit):";
+    public static final String LISTMENUACTIONS = "[list] Enter action ([number], back):";
+    public static final String SEARCHMENUACTIONS = "[search] Enter action ([number], back, again):";
     private static final Scanner scanner = new Scanner(System.in);
+
     public static void main(String[] args) {
         menu();
     }
 
     static void menu() {
-        System.out.print("[menu] Enter action (add, list, search, count, exit):");
+        System.out.print(MENUACTIONS);
         String input = scanner.next();
         switch (input) {
             case "add": {
@@ -43,7 +48,7 @@ public class Main {
     static void listMenu() {
         list();
         System.out.println();
-        System.out.print("[list] Enter action ([number], back):");
+        System.out.print(LISTMENUACTIONS);
         String input = scanner.next();
         if (input.equals("back")) {
             menu();
@@ -61,7 +66,7 @@ public class Main {
 
     static void searchMenu() {
         searchContacts();
-        System.out.println("[search] Enter action ([number], back, again):");
+        System.out.println(SEARCHMENUACTIONS);
         String input = scanner.next();
         switch (input) {
             case "back": {
@@ -94,20 +99,24 @@ public class Main {
             case "delete": {
                 removeContact(index);
                 System.out.println();
-                recordMenu(index);
+                menu();
             }
             case "menu": {
                 menu();
             }
         }
     }
+
     static void addContact() {
         System.out.println("Enter the type (person, organization):");
         String isPerson = scanner.next();
         if (isPerson.equals("person")) {
             PhoneBook.addContact(addPerson(scanner));
-        } else PhoneBook.addContact(addOrganization(scanner));
+        } else {
+            PhoneBook.addContact(addOrganization(scanner));
+        }
     }
+
     static void editContact(int index) {
         if (index > PhoneBook.count()) return;
         edit(scanner, index - 1);
@@ -117,7 +126,7 @@ public class Main {
         System.out.println("Enter search query:");
         List<Contact> searchedQuery = searchQuery(scanner.next());
         System.out.println("Found " + searchedQuery.size() + " results:");
-        listQuery(searchedQuery);
+        listSearchedQuery(searchedQuery);
     }
 
     static void removeContact(int index) {
