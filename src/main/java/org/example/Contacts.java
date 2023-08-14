@@ -40,7 +40,7 @@ public class Contacts {
                 menu();
             }
             case "exit": {
-                System.exit(0);
+                return;
             }
         }
     }
@@ -111,9 +111,9 @@ public class Contacts {
         System.out.println("Enter the type (person, organization):");
         String isPerson = scanner.next();
         if (isPerson.equals("person")) {
-            PhoneBook.addContact(addPerson(scanner));
+            PhoneBook.addPerson(scanner);
         } else {
-            PhoneBook.addContact(addOrganization(scanner));
+            PhoneBook.addOrganization(scanner);
         }
     }
 

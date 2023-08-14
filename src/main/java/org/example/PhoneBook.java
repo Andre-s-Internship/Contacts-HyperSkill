@@ -16,13 +16,7 @@ public class PhoneBook {
         return contactList.size();
     }
 
-
-    public static void addContact(Contact contact) {
-        contactList.add(contact);
-        System.out.println("The record added.");
-    }
-
-    static PersonContact addPerson(Scanner scanner) {
+    static void addPerson(Scanner scanner) {
         System.out.print("Enter the name:");
         String name = scanner.next();
         System.out.print("Enter the surname:");
@@ -36,19 +30,20 @@ public class PhoneBook {
         System.out.println("Enter the number:");
         scanner.nextLine();
         String phoneNumber = scanner.nextLine();
-        return new PersonContact(name, surname, phoneNumber, gender);
+        contactList.add(new PersonContact(name, surname, phoneNumber, gender));
+        System.out.println("The record added.");
     }
 
-    static OrganizationContact addOrganization(Scanner scanner) {
+    static void addOrganization(Scanner scanner) {
         System.out.print("Enter the organization name:");
         scanner.nextLine();
         String name = scanner.nextLine();
         System.out.println("Enter the address:");
         String address = scanner.nextLine();
         System.out.println("Enter the number:");
-        //scanner.nextLine();
         String phoneNumber = scanner.nextLine();
-        return new OrganizationContact(phoneNumber, name, address);
+        contactList.add(new OrganizationContact(phoneNumber, name, address));
+        System.out.println("The record added.");
     }
 
     public static void list() {
@@ -73,11 +68,11 @@ public class PhoneBook {
 
     static void editPerson(Scanner scanner, PersonContact contact) {
         System.out.println(EDITPERSONFIELD);
-        String input = scanner.next();
+        String input = scanner.nextLine();
         switch (input) {
             case "name" -> {
                 System.out.println("Enter name:");
-                String newName = scanner.next();
+                String newName = scanner.nextLine();
                 contact.setName(newName);
                 System.out.println("The record updated!");
                 contact.setLastEditDate(LocalDateTime.now());
@@ -132,7 +127,8 @@ public class PhoneBook {
         Contact contact = contactList.get(index);
         System.out.println(contact.print());
     }
-    private static boolean checkGender(String gender) {
+
+    public static boolean checkGender(String gender) {
         return gender.equals("M") || gender.equals("F");
     }
 
@@ -155,7 +151,7 @@ public class PhoneBook {
         return result;
     }
 
-    private static boolean containsQuery(String base, String substring) {
+    public static boolean containsQuery(String base, String substring) {
         return base.toLowerCase().contains(substring.toLowerCase());
     }
 
@@ -170,7 +166,7 @@ public class PhoneBook {
                 System.out.println(count + ". " + ((PersonContact) contact).getName() + " "
                         + ((PersonContact) contact).getSurname() + ", " + contact.getPhoneNumber());
             } else if (contact instanceof OrganizationContact) {
-                System.out.println(count + ". " + ((OrganizationContact) contact).getOrgName());
+                System.out.println(count + ". " + ((OrganizationContact) contact).getName());
             }
             count++;
         }

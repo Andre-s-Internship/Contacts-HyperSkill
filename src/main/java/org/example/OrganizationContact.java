@@ -22,10 +22,6 @@ public class OrganizationContact extends Contact {
         this.address = address;
     }
 
-    public String getOrgName() {
-        return name;
-    }
-
     @Override
     public String print() {
         return "Organization name: " + getName() + "\n" +
