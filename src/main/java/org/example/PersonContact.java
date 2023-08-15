@@ -37,7 +37,7 @@ public class PersonContact extends Contact {
         if (isValidPhoneNumber(phoneNumber)) {
             this.phoneNumber = phoneNumber;
         } else {
-            this.phoneNumber = EMPTYNUMBER;
+            this.phoneNumber = EMPTY_NUMBER;
         }
     }
 

@@ -7,8 +7,8 @@ import java.util.Scanner;
 
 public class PhoneBook {
 
-    public static final String EDITPERSONFIELD = "Select a field (name, surname, gender, number):";
-    public static final String EDITORGANIZATIONFIELD = "Select a field (address, number):";
+    public static final String EDIT_PERSON_FIELD = "Select a field (name, surname, gender, number):";
+    public static final String EDIT_ORGANIZATION_FIELD = "Select a field (address, number):";
 
     private static final List<Contact> contactList = new ArrayList<>();
 
@@ -67,7 +67,7 @@ public class PhoneBook {
     }
 
     static void editPerson(Scanner scanner, PersonContact contact) {
-        System.out.println(EDITPERSONFIELD);
+        System.out.println(EDIT_PERSON_FIELD);
         String input = scanner.nextLine();
         switch (input) {
             case "name" -> {
@@ -103,7 +103,7 @@ public class PhoneBook {
     }
 
     static void editOrganization(Scanner scanner, OrganizationContact contact) {
-        System.out.println(EDITORGANIZATIONFIELD);
+        System.out.println(EDIT_ORGANIZATION_FIELD);
         String input = scanner.next();
         switch (input) {
             case "address" -> {

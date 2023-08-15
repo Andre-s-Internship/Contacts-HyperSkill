@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 
 public abstract class Contact {
 
-    public static final String EMPTYNUMBER = "[no number]";
+    public static final String EMPTY_NUMBER = "[no number]";
     private String phoneNumber;
     private final LocalDateTime creationDate;
     private LocalDateTime lastEditDate;
@@ -24,9 +24,10 @@ public abstract class Contact {
         if (isValidPhoneNumber(phoneNumber)) {
             this.phoneNumber = phoneNumber;
         } else {
-            this.phoneNumber = EMPTYNUMBER;
+            this.phoneNumber = EMPTY_NUMBER;
         }
     }
+
 //    Rules of the regex below
 //    1. The phone number should be split into groups using a space or dash. One group is also possible.
 //    2. Before the first group, there may or may not be a plus symbol.

@@ -7,9 +7,9 @@ import static org.example.PhoneBook.*;
 
 public class Contacts {
 
-    public static final String MENUACTIONS = "[menu] Enter action (add, list, search, count, exit):";
-    public static final String LISTMENUACTIONS = "[list] Enter action ([number], back):";
-    public static final String SEARCHMENUACTIONS = "[search] Enter action ([number], back, again):";
+    public static final String MENU_ACTIONS = "[menu] Enter action (add, list, search, count, exit):";
+    public static final String LIST_MENU_ACTIONS = "[list] Enter action ([number], back):";
+    public static final String SEARCH_MENU_ACTIONS = "[search] Enter action ([number], back, again):";
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -17,7 +17,7 @@ public class Contacts {
     }
 
     static void menu() {
-        System.out.print(MENUACTIONS);
+        System.out.print(MENU_ACTIONS);
         String input = scanner.next();
         switch (input) {
             case "add": {
@@ -48,7 +48,7 @@ public class Contacts {
     static void listMenu() {
         list();
         System.out.println();
-        System.out.print(LISTMENUACTIONS);
+        System.out.print(LIST_MENU_ACTIONS);
         String input = scanner.next();
         if (input.equals("back")) {
             menu();
@@ -66,7 +66,7 @@ public class Contacts {
 
     static void searchMenu() {
         searchContacts();
-        System.out.println(SEARCHMENUACTIONS);
+        System.out.println(SEARCH_MENU_ACTIONS);
         String input = scanner.next();
         switch (input) {
             case "back": {
