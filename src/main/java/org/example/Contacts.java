@@ -10,6 +10,12 @@ public class Contacts {
     public static final String MENU_ACTIONS = "[menu] Enter action (add, list, search, count, exit):";
     public static final String LIST_MENU_ACTIONS = "[list] Enter action ([number], back):";
     public static final String SEARCH_MENU_ACTIONS = "[search] Enter action ([number], back, again):";
+    public static final String RECORD_MENU_ACTIONS = "[record] Enter action (edit, delete, menu):";
+    private static final String ACTION_ADD = "add";
+    private static final String ACTION_SEARCH = "search";
+    private static final String ACTION_LIST = "list";
+    private static final String ACTION_COUNT = "count";
+    private static final String ACTION_EXIT = "exit";
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -20,27 +26,27 @@ public class Contacts {
         System.out.print(MENU_ACTIONS);
         String input = scanner.next();
         switch (input) {
-            case "add": {
+            case ACTION_ADD: {
                 addContact();
                 System.out.println();
                 menu();
             }
-            case "list": {
+            case ACTION_LIST: {
                 listMenu();
                 System.out.println();
             }
-            case "search": {
+            case ACTION_SEARCH: {
                 searchMenu();
                 searchContacts();
                 System.out.println();
             }
-            case "count": {
+            case ACTION_COUNT: {
                 count();
                 System.out.println();
                 menu();
             }
-            case "exit": {
-                return;
+            case ACTION_EXIT: {
+                System.exit(0);
             }
         }
     }
@@ -88,7 +94,7 @@ public class Contacts {
     }
 
     static void recordMenu(int index) {
-        System.out.print("[record] Enter action (edit, delete, menu):");
+        System.out.print(RECORD_MENU_ACTIONS);
         String input = scanner.next();
         switch (input) {
             case "edit": {

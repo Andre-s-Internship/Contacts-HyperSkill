@@ -10,6 +10,13 @@ public class PhoneBook {
     public static final String EDIT_PERSON_FIELD = "Select a field (name, surname, gender, number):";
     public static final String EDIT_ORGANIZATION_FIELD = "Select a field (address, number):";
 
+    private static final String PERSON_NAME = "name";
+    private static final String PERSON_SURNAME = "surname";
+    private static final String PERSON_GENDER = "gender";
+    private static final String NUMBER = "number";
+    private static final String ORG_ADDRESS = "address";
+
+
     private static final List<Contact> contactList = new ArrayList<>();
 
     public static int count() {
@@ -19,16 +26,20 @@ public class PhoneBook {
     static void addPerson(Scanner scanner) {
         System.out.print("Enter the name:");
         String name = scanner.next();
+
         System.out.print("Enter the surname:");
         String surname = scanner.next();
+
         System.out.print("Enter the gender (M, F):");
         String gender = scanner.next();
+
         if (!checkGender(gender)) {
             System.out.println("Bad gender!");
             gender = "[no data]";
         }
         System.out.println("Enter the number:");
         scanner.nextLine();
+
         String phoneNumber = scanner.nextLine();
         contactList.add(new PersonContact(name, surname, phoneNumber, gender));
         System.out.println("The record added.");
@@ -38,10 +49,13 @@ public class PhoneBook {
         System.out.print("Enter the organization name:");
         scanner.nextLine();
         String name = scanner.nextLine();
+
         System.out.println("Enter the address:");
         String address = scanner.nextLine();
+
         System.out.println("Enter the number:");
         String phoneNumber = scanner.nextLine();
+
         contactList.add(new OrganizationContact(phoneNumber, name, address));
         System.out.println("The record added.");
     }
@@ -70,28 +84,28 @@ public class PhoneBook {
         System.out.println(EDIT_PERSON_FIELD);
         String input = scanner.nextLine();
         switch (input) {
-            case "name" -> {
+            case PERSON_NAME -> {
                 System.out.println("Enter name:");
                 String newName = scanner.nextLine();
                 contact.setName(newName);
                 System.out.println("The record updated!");
                 contact.setLastEditDate(LocalDateTime.now());
             }
-            case "surname" -> {
+            case PERSON_SURNAME -> {
                 System.out.println("Enter surname:");
                 String newSurname = scanner.next();
                 contact.setSurname(newSurname);
                 System.out.println("The record updated!");
                 contact.setLastEditDate(LocalDateTime.now());
             }
-            case "gender" -> {
+            case PERSON_GENDER -> {
                 System.out.println("Enter gender:");
                 String newGender = scanner.next();
                 contact.setGender(newGender);
                 System.out.println("The record updated!");
                 contact.setLastEditDate(LocalDateTime.now());
             }
-            case "number" -> {
+            case NUMBER -> {
                 scanner.nextLine();
                 System.out.println("Enter number:");
                 String newNumber = scanner.nextLine();
@@ -106,14 +120,14 @@ public class PhoneBook {
         System.out.println(EDIT_ORGANIZATION_FIELD);
         String input = scanner.next();
         switch (input) {
-            case "address" -> {
+            case ORG_ADDRESS -> {
                 System.out.println("Enter address:");
                 scanner.nextLine();
                 String newAddress = scanner.nextLine();
                 contact.setAddress(newAddress);
                 System.out.println("The record updated!");
             }
-            case "number" -> {
+            case NUMBER -> {
                 scanner.nextLine();
                 System.out.println("Enter number:");
                 String newNumber = scanner.nextLine();
